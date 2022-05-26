@@ -8,6 +8,7 @@ export default {
     '!**/protocols/**',
     '!**/test/**'
   ],
+  preset: '@shelf/jest-mongodb',
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
   testEnvironment: 'node',
