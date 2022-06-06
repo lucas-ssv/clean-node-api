@@ -1,23 +1,17 @@
-import { AccountModel } from '../../../domain/models/account'
-import { AddAccount, AddAccountModel } from '../../../domain/usecases/add-account'
+import { AddAccount } from '../../../domain/usecases/add-account'
 import { InvalidParamError, MissingParamError, ServerError } from '../../errors'
-import { EmailValidator } from './signup-protocols'
 import { EmailValidatorStub } from '../../test/mock-email-validator'
 import { SignUpController } from './signup'
 import { mockSignUpRequest } from '../../test/mock-signup-request'
 import { mockFakeAccount } from '../../test/mock-fake-account'
 import { ok, serverError, badRequest } from '../../helpers/http-helper'
+import { EmailValidator } from '../../protocols/email-validator'
+import { AddAccountStub } from '../../test/mock-add-account'
 
 type SutTypes = {
   sut: SignUpController
   emailValidatorStub: EmailValidator
   addAccountStub: AddAccount
-}
-
-class AddAccountStub implements AddAccount {
-  async add (account: AddAccountModel): Promise<AccountModel> {
-    return await Promise.resolve(mockFakeAccount())
-  }
 }
 
 const makeSut = (): SutTypes => {

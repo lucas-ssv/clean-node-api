@@ -1,10 +1,10 @@
 import { Authentication } from '../../../domain/usecases/authentication'
 import { InvalidParamError, MissingParamError } from '../../errors'
 import { badRequest, serverError, unauthorized } from '../../helpers/http-helper'
+import { EmailValidator } from '../../protocols/email-validator'
 import { AuthenticationStub } from '../../test/mock-authentication'
 import { EmailValidatorStub } from '../../test/mock-email-validator'
 import { mockLoginRequest } from '../../test/mock-login-request'
-import { EmailValidator } from '../signup/signup-protocols'
 import { LoginController } from './login'
 
 type SutTypes = {
