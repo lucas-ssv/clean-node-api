@@ -6,14 +6,15 @@ import { EmailValidator } from '../signup/signup-protocols'
 export class LoginController implements Controller {
   constructor (private readonly emailValidator: EmailValidator) {}
 
-  async handle (request: HttpRequest): Promise<HttpResponse> {
-    if (!request.body.email) {
-      return badRequest(new MissingParamError('email'))
+  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+    const { email } = httpRequest.body
+    const requiredFields = ['email', 'password']
+    for (const field of requiredFields) {
+      if (!httpRequest.body[field]) {
+        return badRequest(new MissingParamError(field))
+      }
     }
-    if (!request.body.password) {
-      return badRequest(new MissingParamError('password'))
-    }
-    const isValid = this.emailValidator.isValid(request.body.email)
+    const isValid = this.emailValidator.isValid(email)
     if (!isValid) {
       return badRequest(new InvalidParamError('email'))
     }
