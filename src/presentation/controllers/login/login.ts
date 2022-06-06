@@ -1,40 +1,36 @@
-import { AddAccount } from '../../../domain/usecases/add-account'
+import { Authentication } from '../../../domain/usecases/authentication'
 import { InvalidParamError, MissingParamError } from '../../errors'
-import { badRequest, ok, serverError } from '../../helpers/http-helper'
+import { badRequest, ok, serverError, unauthorized } from '../../helpers/http-helper'
 import { Controller, HttpRequest, HttpResponse } from '../../protocols'
 import { EmailValidator } from '../../protocols/email-validator'
 
-export class SignUpController implements Controller {
+export class LoginController implements Controller {
   constructor (
     private readonly emailValidator: EmailValidator,
-    private readonly addAccount: AddAccount
-  ) {
-    this.emailValidator = emailValidator
-    this.addAccount = addAccount
-  }
+    private readonly authentication: Authentication
+  ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
+      const { email, password } = httpRequest.body
+      const requiredFields = ['email', 'password']
       for (const field of requiredFields) {
         if (!httpRequest.body[field]) {
           return badRequest(new MissingParamError(field))
         }
       }
-      const { name, email, password, passwordConfirmation } = httpRequest.body
-      if (password !== passwordConfirmation) {
-        return badRequest(new InvalidParamError('passwordConfirmation'))
-      }
       const isValid = this.emailValidator.isValid(email)
       if (!isValid) {
         return badRequest(new InvalidParamError('email'))
       }
-      const account = await this.addAccount.add({
-        name,
-        email,
-        password
+      const authAccount = await this.authentication.auth(email, password)
+      if (!authAccount) {
+        return unauthorized()
+      }
+      return ok({
+        name: 'any_name',
+        token: 'any_token'
       })
-      return ok(account)
     } catch (error) {
       return serverError(error)
     }

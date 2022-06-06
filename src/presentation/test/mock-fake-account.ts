@@ -1,4 +1,4 @@
-import { AccountModel } from '../controllers/signup/signup-protocols'
+import { AccountModel } from '../../domain/models/account'
 
 export const mockFakeAccount = (): AccountModel => ({
   id: 'valid_id',

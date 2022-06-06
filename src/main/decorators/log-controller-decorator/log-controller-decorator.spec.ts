@@ -5,7 +5,7 @@ import { mockSignUpRequest } from '../../../presentation/test/mock-signup-reques
 import { LogControllerDecorator } from './log-controller-decorator'
 
 class ControllerStub implements Controller {
-  async handle (request: HttpRequest): Promise<HttpResponse> {
+  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     const httpResponse = {
       statusCode: 200,
       body: {
