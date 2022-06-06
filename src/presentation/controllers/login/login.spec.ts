@@ -1,6 +1,6 @@
 import { Authentication } from '../../../domain/usecases/authentication'
 import { InvalidParamError, MissingParamError } from '../../errors'
-import { badRequest, serverError, unauthorized } from '../../helpers/http-helper'
+import { badRequest, ok, serverError, unauthorized } from '../../helpers/http-helper'
 import { EmailValidator } from '../../protocols/email-validator'
 import { AuthenticationStub } from '../../test/mock-authentication'
 import { EmailValidatorStub } from '../../test/mock-email-validator'
@@ -91,5 +91,11 @@ describe('LoginController', () => {
     })
     const httpResponse = await sut.handle(mockLoginRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
+  })
+
+  test('Should return 200 if valid credentials are provided', async () => {
+    const { sut } = makeSut()
+    const httpResponse = await sut.handle(mockLoginRequest())
+    expect(httpResponse).toEqual(ok({ name: 'any_name', token: 'any_token' }))
   })
 })
