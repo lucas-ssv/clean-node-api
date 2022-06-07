@@ -7,7 +7,7 @@ import { mockFakeAccount } from '../../test/mock-fake-account'
 import { ok, serverError, badRequest } from '../../helpers/http-helper'
 import { EmailValidator } from '../../protocols/email-validator'
 import { AddAccountStub } from '../../test/mock-add-account'
-import { Validation } from '../../helpers/validators/validation'
+import { Validation } from '../../helpers/validation/protocols/validation'
 
 type SutTypes = {
   sut: SignUpController

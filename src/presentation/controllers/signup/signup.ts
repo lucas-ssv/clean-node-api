@@ -1,7 +1,7 @@
 import { AddAccount } from '../../../domain/usecases/add-account'
 import { InvalidParamError } from '../../errors'
 import { badRequest, ok, serverError } from '../../helpers/http-helper'
-import { Validation } from '../../helpers/validators/validation'
+import { Validation } from '../../helpers/validation/protocols/validation'
 import { Controller, HttpRequest, HttpResponse } from '../../protocols'
 import { EmailValidator } from '../../protocols/email-validator'
 
