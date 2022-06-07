@@ -7,21 +7,31 @@ import { mockFakeAccount } from '../../test/mock-fake-account'
 import { ok, serverError, badRequest } from '../../helpers/http-helper'
 import { EmailValidator } from '../../protocols/email-validator'
 import { AddAccountStub } from '../../test/mock-add-account'
+import { Validation } from '../../helpers/validators/validation'
 
 type SutTypes = {
   sut: SignUpController
   emailValidatorStub: EmailValidator
   addAccountStub: AddAccount
+  validationStub: ValidationStub
+}
+
+class ValidationStub implements Validation {
+  validate (input: any): Error {
+    return null
+  }
 }
 
 const makeSut = (): SutTypes => {
   const emailValidatorStub = new EmailValidatorStub()
   const addAccountStub = new AddAccountStub()
-  const sut = new SignUpController(emailValidatorStub, addAccountStub)
+  const validationStub = new ValidationStub()
+  const sut = new SignUpController(emailValidatorStub, addAccountStub, validationStub)
   return {
     sut,
     emailValidatorStub,
-    addAccountStub
+    addAccountStub,
+    validationStub
   }
 }
 
@@ -137,5 +147,13 @@ describe('SignUpController', () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(mockSignUpRequest())
     expect(httpResponse).toEqual(ok(mockFakeAccount()))
+  })
+
+  test('Should call Validation with correct value', async () => {
+    const { sut, validationStub } = makeSut()
+    const validateSpy = jest.spyOn(validationStub, 'validate')
+    const httpRequest = mockSignUpRequest()
+    await sut.handle(httpRequest)
+    expect(validateSpy).toHaveBeenCalledWith(httpRequest.body)
   })
 })
