@@ -7,19 +7,13 @@ import { mockFakeAccount } from '../../test/mock-fake-account'
 import { ok, serverError, badRequest } from '../../helpers/http-helper'
 import { EmailValidator } from '../../protocols/email-validator'
 import { AddAccountStub } from '../../test/mock-add-account'
-import { Validation } from '../../helpers/validation/protocols/validation'
+import { ValidationStub } from '../../test/mock-validation'
 
 type SutTypes = {
   sut: SignUpController
   emailValidatorStub: EmailValidator
   addAccountStub: AddAccount
   validationStub: ValidationStub
-}
-
-class ValidationStub implements Validation {
-  validate (input: any): Error {
-    return null
-  }
 }
 
 const makeSut = (): SutTypes => {
