@@ -1,4 +1,4 @@
-import { Validation } from '../../../../presentation/helpers/validation/protocols/validation'
+import { Validation } from '../../../../presentation/protocols/validation'
 import { EmailValidation } from '../../../../presentation/helpers/validation/validators/email-validation/email-validation'
 import { RequiredFieldValidation } from '../../../../presentation/helpers/validation/validators/required-field-validation/required-field-validation'
 import { ValidationComposite } from '../../../../presentation/helpers/validation/validators/validation-composite/validation-composite'
