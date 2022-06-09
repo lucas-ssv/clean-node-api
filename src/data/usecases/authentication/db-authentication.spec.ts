@@ -80,4 +80,10 @@ describe('DbAuthentication Usecase', () => {
     const promise = sut.auth(mockFakeAuthenticationModel())
     await expect(promise).rejects.toThrow()
   })
+
+  test('Should return an auth account if succeeds', async () => {
+    const { sut } = makeSut()
+    const authAccount = await sut.auth(mockFakeAuthenticationModel())
+    expect(authAccount).toEqual({ name: 'any_name', token: 'any_token' })
+  })
 })
