@@ -60,4 +60,11 @@ describe('DbAuthentication Usecase', () => {
     const promise = sut.auth({ email: 'any_email@mail.com', password: 'any_password' })
     await expect(promise).rejects.toThrow()
   })
+
+  test('Should return null if HashCompare returns false', async () => {
+    const { sut, hashCompareStub } = makeSut()
+    jest.spyOn(hashCompareStub, 'compare').mockReturnValueOnce(Promise.resolve(false))
+    const authAccount = await sut.auth({ email: 'any_email@mail.com', password: 'any_password' })
+    expect(authAccount).toBeNull()
+  })
 })
