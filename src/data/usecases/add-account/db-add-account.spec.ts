@@ -1,6 +1,6 @@
 import { AddAccount } from '../../../domain/usecases/add-account'
-import { AddAccountRepository } from '../../protocols/add-account-repository'
-import { Encrypter } from '../../protocols/encrypter'
+import { AddAccountRepository } from '../../protocols/db/add-account-repository'
+import { Encrypter } from '../../protocols/criptography/encrypter'
 import { AddAccountRepositoryStub } from '../../test/mock-add-account-repository'
 import { mockFakeAddAccountResult } from '../../test/mock-fake-add-account-result'
 import { EncrypterStub } from '../../test/mock-encrypter'
