@@ -2,6 +2,7 @@ import { mockFakeAuthenticationModel } from '../../test/mock-fake-authentication
 import { HashCompareStub } from '../../test/mock-hash-compare'
 import { LoadAccountByEmailRepositoryStub } from '../../test/mock-load-account-by-email-repository'
 import { TokenGeneratorStub } from '../../test/mock-token-generator'
+import { UpdateAccessTokenRepositoryStub } from '../../test/mock-update-access-token-repository'
 import { DbAuthentication } from './db-authentication'
 
 type SutTypes = {
@@ -9,18 +10,21 @@ type SutTypes = {
   loadAccountByEmailRepositoryStub: LoadAccountByEmailRepositoryStub
   hashCompareStub: HashCompareStub
   tokenGeneratorStub: TokenGeneratorStub
+  updateAccessTokenRepositoryStub: UpdateAccessTokenRepositoryStub
 }
 
 const makeSut = (): SutTypes => {
   const loadAccountByEmailRepositoryStub = new LoadAccountByEmailRepositoryStub()
   const hashCompareStub = new HashCompareStub()
   const tokenGeneratorStub = new TokenGeneratorStub()
-  const sut = new DbAuthentication(loadAccountByEmailRepositoryStub, hashCompareStub, tokenGeneratorStub)
+  const updateAccessTokenRepositoryStub = new UpdateAccessTokenRepositoryStub()
+  const sut = new DbAuthentication(loadAccountByEmailRepositoryStub, hashCompareStub, tokenGeneratorStub, updateAccessTokenRepositoryStub)
   return {
     sut,
     loadAccountByEmailRepositoryStub,
     hashCompareStub,
-    tokenGeneratorStub
+    tokenGeneratorStub,
+    updateAccessTokenRepositoryStub
   }
 }
 
@@ -85,5 +89,12 @@ describe('DbAuthentication Usecase', () => {
     const { sut } = makeSut()
     const authAccount = await sut.auth(mockFakeAuthenticationModel())
     expect(authAccount).toEqual({ name: 'any_name', token: 'any_token' })
+  })
+
+  test('Should call UpdateAccessTokenRepository with correct values', async () => {
+    const { sut, updateAccessTokenRepositoryStub } = makeSut()
+    const updateSpy = jest.spyOn(updateAccessTokenRepositoryStub, 'update')
+    await sut.auth(mockFakeAuthenticationModel())
+    expect(updateSpy).toHaveBeenCalledWith('any_id', 'any_token')
   })
 })
