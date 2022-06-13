@@ -1,5 +1,5 @@
 import { AddAccount } from '../../../domain/usecases/add-account'
-import { AddAccountRepository } from '../../protocols/db/add-account-repository'
+import { AddAccountRepository } from '../../protocols/db/account/add-account-repository'
 import { Hasher } from '../../protocols/criptography/hasher'
 import { AddAccountRepositoryStub } from '../../test/mock-add-account-repository'
 import { mockFakeAddAccountResult } from '../../test/mock-fake-add-account-result'

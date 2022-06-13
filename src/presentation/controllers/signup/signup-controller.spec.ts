@@ -1,7 +1,7 @@
 import { AddAccount } from '../../../domain/usecases/add-account'
 import { MissingParamError, ServerError } from '../../errors'
 import { EmailValidatorStub } from '../../test/mock-email-validator'
-import { SignUpController } from './signup'
+import { SignUpController } from './signup-controller'
 import { mockSignUpRequest } from '../../test/mock-signup-request'
 import { mockFakeAccount } from '../../test/mock-fake-account'
 import { ok, serverError, badRequest } from '../../helpers/http/http-helper'
