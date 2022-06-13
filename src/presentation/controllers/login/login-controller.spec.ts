@@ -5,7 +5,7 @@ import { AuthenticationStub } from '../../test/mock-authentication'
 import { mockLoginRequest } from '../../test/mock-login-request'
 import { mockSignUpRequest } from '../../test/mock-signup-request'
 import { ValidationStub } from '../../test/mock-validation'
-import { LoginController } from './login'
+import { LoginController } from './login-controller'
 
 type SutTypes = {
   sut: LoginController
