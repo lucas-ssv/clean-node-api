@@ -11,7 +11,6 @@
     "test:watch": "npm run test -- --watch",
     "test:staged": "npm run test -- --findRelatedTests",
     "test:ci": "npm run test -- --coverage",
-    "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
   "keywords": [],
