@@ -3,12 +3,13 @@ import { app } from '../config/app'
 import request from 'supertest'
 import { Collection } from 'mongodb'
 import { hash } from 'bcrypt'
+import env from '../config/env'
 
 describe('Login Routes', () => {
   let accountCollection: Collection
 
   beforeAll(async () => {
-    await MongoHelper.connect(process.env.MONGO_URL)
+    await MongoHelper.connect(env.mongoUrl)
   })
 
   beforeEach(async () => {
