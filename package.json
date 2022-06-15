@@ -7,6 +7,8 @@
     "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc",
     "dev": "ts-node src/main/server.ts",
+    "up": "npm run build && docker-compose up -d",
+    "down": "docker-compose down",
     "test": "jest --passWithNoTests --runInBand --clearMocks --no-cache",
     "test:watch": "npm run test -- --watch",
     "test:staged": "npm run test -- --findRelatedTests",
