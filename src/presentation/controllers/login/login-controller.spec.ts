@@ -1,4 +1,3 @@
-import { Authentication } from '../../../domain/usecases/authentication'
 import { MissingParamError } from '../../errors'
 import { badRequest, ok, serverError, unauthorized } from '../../helpers/http/http-helper'
 import { AuthenticationStub } from '../../test/mock-authentication'
@@ -9,7 +8,7 @@ import { LoginController } from './login-controller'
 
 type SutTypes = {
   sut: LoginController
-  authenticationStub: Authentication
+  authenticationStub: AuthenticationStub
   validationStub: ValidationStub
 }
 
@@ -37,7 +36,9 @@ describe('LoginController', () => {
 
   test('Should return 401 if invalid credentials are provided', async () => {
     const { sut, authenticationStub } = makeSut()
-    jest.spyOn(authenticationStub, 'auth').mockReturnValueOnce(Promise.resolve(null))
+    jest.spyOn(authenticationStub, 'auth').mockImplementationOnce(async (): Promise<any> => {
+      return await Promise.resolve(null)
+    })
     const httpResponse = await sut.handle(mockLoginRequest())
     expect(httpResponse).toEqual(unauthorized())
   })
