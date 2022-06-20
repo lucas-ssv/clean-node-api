@@ -1,9 +1,9 @@
 import { AddAccount } from '../../../domain/usecases/add-account'
-import { MissingParamError, ServerError } from '../../errors'
+import { EmailInUseError, MissingParamError, ServerError } from '../../errors'
 import { EmailValidatorStub } from '../../test/mock-email-validator'
 import { SignUpController } from './signup-controller'
 import { mockSignUpRequest } from '../../test/mock-signup-request'
-import { ok, serverError, badRequest } from '../../helpers/http/http-helper'
+import { ok, serverError, badRequest, forbidden } from '../../helpers/http/http-helper'
 import { EmailValidator } from '../../protocols/email-validator'
 import { AddAccountStub } from '../../test/mock-add-account'
 import { ValidationStub } from '../../test/mock-validation'
@@ -52,6 +52,15 @@ describe('SignUpController', () => {
       email: 'any_email@email.com',
       password: 'any_password'
     })
+  })
+
+  test('Should return 403 if AddAccount returns null', async () => {
+    const { sut, addAccountStub } = makeSut()
+    jest.spyOn(addAccountStub, 'add').mockImplementationOnce(async (): Promise<any> => {
+      return await Promise.resolve(null)
+    })
+    const httpResponse = await sut.handle(mockSignUpRequest())
+    expect(httpResponse).toEqual(forbidden(new EmailInUseError()))
   })
 
   test('Should return 200 if valid data are provided', async () => {
