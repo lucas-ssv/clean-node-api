@@ -3,7 +3,6 @@ import { MissingParamError, ServerError } from '../../errors'
 import { EmailValidatorStub } from '../../test/mock-email-validator'
 import { SignUpController } from './signup-controller'
 import { mockSignUpRequest } from '../../test/mock-signup-request'
-import { mockFakeAccount } from '../../test/mock-fake-account'
 import { ok, serverError, badRequest } from '../../helpers/http/http-helper'
 import { EmailValidator } from '../../protocols/email-validator'
 import { AddAccountStub } from '../../test/mock-add-account'
@@ -58,7 +57,7 @@ describe('SignUpController', () => {
   test('Should return 200 if valid data are provided', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(mockSignUpRequest())
-    expect(httpResponse).toEqual(ok(mockFakeAccount()))
+    expect(httpResponse).toEqual(ok({ name: 'any_name', token: 'any_token' }))
   })
 
   test('Should call Validation with correct value', async () => {
