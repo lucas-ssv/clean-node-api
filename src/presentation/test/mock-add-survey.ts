@@ -1,6 +1,7 @@
+import { AddSurvey, AddSurveyModel } from '../../domain/usecases/add-survey'
 import { HttpRequest } from '../protocols'
 
-export const mockAddSurvey = (): HttpRequest => ({
+export const mockAddSurveyRequest = (): HttpRequest => ({
   body: {
     question: 'any_question',
     answers: [{
@@ -9,3 +10,9 @@ export const mockAddSurvey = (): HttpRequest => ({
     }]
   }
 })
+
+export class AddSurveyStub implements AddSurvey {
+  async add (data: AddSurveyModel): Promise<void> {
+    return await Promise.resolve()
+  }
+}
