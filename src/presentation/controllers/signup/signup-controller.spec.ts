@@ -4,11 +4,11 @@ import { EmailValidatorStub } from '../../test/mock-email-validator'
 import { SignUpController } from './signup-controller'
 import { mockSignUpRequest } from '../../test/mock-signup-request'
 import { ok, serverError, badRequest, forbidden } from '../../helpers/http/http-helper'
-import { EmailValidator } from '../../protocols/email-validator'
 import { AddAccountStub } from '../../test/mock-add-account'
 import { ValidationStub } from '../../test/mock-validation'
 import { AuthenticationStub } from '../../test/mock-authentication'
 import { mockLoginRequest } from '../../test/mock-login-request'
+import { EmailValidator } from '../../../validation/protocols/email-validator'
 
 type SutTypes = {
   sut: SignUpController
