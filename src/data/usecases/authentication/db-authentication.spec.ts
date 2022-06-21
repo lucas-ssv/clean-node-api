@@ -61,7 +61,9 @@ describe('DbAuthentication Usecase', () => {
 
   test('Should throw if HashCompare throws', async () => {
     const { sut, hashCompareStub } = makeSut()
-    jest.spyOn(hashCompareStub, 'compare').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(hashCompareStub, 'compare').mockImplementationOnce(() => {
+      throw new Error()
+    })
     const promise = sut.auth(mockFakeAuthenticationModel())
     await expect(promise).rejects.toThrow()
   })
@@ -82,7 +84,9 @@ describe('DbAuthentication Usecase', () => {
 
   test('Should throw if Encrypter throws', async () => {
     const { sut, encrypterStub } = makeSut()
-    jest.spyOn(encrypterStub, 'encrypt').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(encrypterStub, 'encrypt').mockImplementationOnce(() => {
+      throw new Error()
+    })
     const promise = sut.auth(mockFakeAuthenticationModel())
     await expect(promise).rejects.toThrow()
   })
@@ -102,7 +106,9 @@ describe('DbAuthentication Usecase', () => {
 
   test('Should throw if UpdateAccessTokenRepository throws', async () => {
     const { sut, updateAccessTokenRepositoryStub } = makeSut()
-    jest.spyOn(updateAccessTokenRepositoryStub, 'updateAccessToken').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(updateAccessTokenRepositoryStub, 'updateAccessToken').mockImplementationOnce(() => {
+      throw new Error()
+    })
     const promise = sut.auth(mockFakeAuthenticationModel())
     await expect(promise).rejects.toThrow()
   })
