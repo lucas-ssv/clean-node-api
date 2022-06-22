@@ -1,6 +1,7 @@
 import { Collection } from 'mongodb'
 import { MongoHelper } from '../helpers/mongo-helper'
 import { AccountMongoRepository } from './account-mongo-repository'
+import env from '../../../../main/config/env'
 
 let accountCollection: Collection
 
@@ -8,7 +9,7 @@ const makeSut = (): AccountMongoRepository => new AccountMongoRepository()
 
 describe('AccountMongoRepository', () => {
   beforeAll(async () => {
-    await MongoHelper.connect(process.env.MONGO_URL)
+    await MongoHelper.connect(env.mongoUrl)
   })
 
   beforeEach(async () => {
@@ -65,6 +66,6 @@ describe('AccountMongoRepository', () => {
     await sut.updateAccessToken(result.insertedId.toHexString(), 'any_token')
     const account = await accountCollection.findOne({ _id: result.insertedId })
     expect(account).toBeTruthy()
-    expect(account.accessToken).toBe('any_token')
+    expect(account?.accessToken).toBe('any_token')
   })
 })
