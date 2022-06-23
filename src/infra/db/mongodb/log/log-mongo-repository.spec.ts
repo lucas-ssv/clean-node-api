@@ -1,13 +1,14 @@
 import { Collection } from 'mongodb'
 import { MongoHelper } from '../helpers/mongo-helper'
 import { LogMongoRepository } from './log-mongo-repository'
+import env from '../../../../main/config/env'
 
 const makeSut = (): LogMongoRepository => new LogMongoRepository()
 
 describe('LogMongoRepository', () => {
   let errorCollection: Collection
   beforeAll(async () => {
-    await MongoHelper.connect(process.env.MONGO_URL)
+    await MongoHelper.connect(env.mongoUrl)
   })
 
   beforeEach(async () => {
