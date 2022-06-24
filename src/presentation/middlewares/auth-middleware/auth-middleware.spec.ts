@@ -2,6 +2,7 @@ import { AccessDeniedError } from '../../errors'
 import { forbidden } from '../../helpers/http/http-helper'
 import { AuthMiddleware } from './auth-middleware'
 import { LoadAccountByTokenStub } from '../../test/mock-load-account-by-token'
+import { makeFakeHeadersRequest } from '../../test/mock-fake-headers-request'
 
 type SutTypes = {
   sut: AuthMiddleware
@@ -27,11 +28,7 @@ describe('AuthMiddleware', () => {
   test('Should call LoadAccountByToken with correct access token', async () => {
     const { sut, loadAccountByTokenStub } = makeSut()
     const loadSpy = jest.spyOn(loadAccountByTokenStub, 'load')
-    await sut.handle({
-      headers: {
-        'x-access-token': 'any_token'
-      }
-    })
+    await sut.handle(makeFakeHeadersRequest())
     expect(loadSpy).toHaveBeenCalledWith('any_token')
   })
 })
