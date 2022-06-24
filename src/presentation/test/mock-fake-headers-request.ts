@@ -1,6 +1,6 @@
 import { HttpRequest } from '../protocols'
 
-export const makeFakeHeadersRequest = (): HttpRequest => ({
+export const mockFakeHeadersRequest = (): HttpRequest => ({
   headers: {
     'x-access-token': 'any_token'
   }
