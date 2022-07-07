@@ -13,5 +13,4 @@ jobs:
         with:
           node-version: 17
           cache: npm
-      - run: eslint 'src/**/*.{js,ts}'
       - run: npm run test:coveralls
