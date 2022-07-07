@@ -15,7 +15,8 @@
     "test:staged": "npm run test -- --findRelatedTests",
     "test:ci": "npm run test -- --coverage",
     "test:coveralls": "npm run test:ci && coveralls < coverage/lcov.info",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "eslint": "eslint src/**"
   },
   "keywords": [],
   "author": "",
