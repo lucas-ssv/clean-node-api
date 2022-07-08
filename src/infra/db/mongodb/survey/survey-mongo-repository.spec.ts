@@ -3,6 +3,8 @@ import env from '../../../../main/config/env'
 import { SurveyMongoRepository } from './survey-mongo-repository'
 import { Collection } from 'mongodb'
 
+const makeSut = (): SurveyMongoRepository => new SurveyMongoRepository()
+
 let surveyCollection: Collection
 
 describe('SurveyMongoRepository', () => {
@@ -21,7 +23,7 @@ describe('SurveyMongoRepository', () => {
 
   describe('add()', () => {
     test('Should return a survey on add success', async () => {
-      const sut = new SurveyMongoRepository()
+      const sut = makeSut()
       await sut.add({
         question: 'any_question',
         answers: [{
