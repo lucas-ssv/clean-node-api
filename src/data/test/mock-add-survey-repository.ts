@@ -6,7 +6,8 @@ export const mockAddSurvey = (): AddSurveyModel => ({
   answers: [{
     image: 'any_image',
     answer: 'any_answer'
-  }]
+  }],
+  date: new Date()
 })
 
 export class AddSurveyRepositoryStub implements AddSurveyRepository {

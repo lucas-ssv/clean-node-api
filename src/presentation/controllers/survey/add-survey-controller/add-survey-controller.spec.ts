@@ -2,6 +2,7 @@ import { ValidationStub } from '../../../test/mock-validation'
 import { AddSurveyStub, mockAddSurveyRequest } from '../../../test/mock-add-survey'
 import { AddSurveyController } from './add-survey-controller'
 import { badRequest, noContent, serverError } from '../../../helpers/http/http-helper'
+import MockDate from 'mockdate'
 
 type SutTypes = {
   sut: AddSurveyController
@@ -21,6 +22,14 @@ const makeSut = (): SutTypes => {
 }
 
 describe('AddSurveyController', () => {
+  beforeAll(() => {
+    MockDate.set(new Date())
+  })
+
+  afterAll(() => {
+    MockDate.reset()
+  })
+
   test('Should call Validation with correct values', async () => {
     const { sut, validationStub } = makeSut()
     const validateSpy = jest.spyOn(validationStub, 'validate')
