@@ -1,4 +1,4 @@
-import { SurveyModel } from '../../domain/models/survey'
+import { SurveyModel } from '../models/survey'
 
 export const mockFakeSurveys = (): SurveyModel[] => {
   return [{

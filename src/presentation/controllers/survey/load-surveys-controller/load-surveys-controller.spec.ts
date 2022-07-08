@@ -2,7 +2,7 @@ import { LoadSurveysController } from './load-surveys-controller'
 import MockDate from 'mockdate'
 import { LoadSurveysStub } from '../../../test/mock-load-surveys'
 import { LoadSurveys } from '../../../../domain/usecases/load-surveys'
-import { mockFakeSurveys } from '../../../test/mock-fake-surveys'
+import { mockFakeSurveys } from '../../../../domain/test/mock-fake-surveys'
 import { noContent, ok, serverError } from '../../../helpers/http/http-helper'
 
 type SutTypes = {
@@ -30,7 +30,7 @@ describe('LoadSurveysController', () => {
 
   test('Should call LoadSurveysController', async () => {
     const { sut, loadSurveysStub } = makeSut()
-    const loadSpy = jest.spyOn(loadSurveysStub, 'load')
+    const loadSpy = jest.spyOn(loadSurveysStub, 'loadAll')
     await sut.handle({})
     expect(loadSpy).toHaveBeenCalled()
   })
@@ -43,14 +43,14 @@ describe('LoadSurveysController', () => {
 
   test('Should return 204 if LoadSurveys returns empty', async () => {
     const { sut, loadSurveysStub } = makeSut()
-    jest.spyOn(loadSurveysStub, 'load').mockReturnValueOnce(await Promise.resolve([]) as any)
+    jest.spyOn(loadSurveysStub, 'loadAll').mockReturnValueOnce(await Promise.resolve([]) as any)
     const httpResponse = await sut.handle({})
     expect(httpResponse).toEqual(noContent())
   })
 
   test('Should return 500 if LoadSurveysController throws', async () => {
     const { sut, loadSurveysStub } = makeSut()
-    jest.spyOn(loadSurveysStub, 'load').mockImplementationOnce(() => {
+    jest.spyOn(loadSurveysStub, 'loadAll').mockImplementationOnce(() => {
       throw new Error()
     })
     const httpResponse = await sut.handle({})
