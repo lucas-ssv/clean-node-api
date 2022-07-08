@@ -1,12 +1,19 @@
 import { LoadSurveysController } from './load-surveys-controller'
-import { LoadSurveys } from '../../../../domain/usecases/load-surveys'
-import { SurveyModel } from '../../../../domain/models/survey'
-import { mockFakeSurveys } from '../../../test/mock-fake-surveys'
 import MockDate from 'mockdate'
+import { LoadSurveysStub } from '../../../test/mock-load-surveys'
+import { LoadSurveys } from '../../../../domain/usecases/load-surveys'
 
-class LoadSurveysStub implements LoadSurveys {
-  async load (): Promise<SurveyModel[]> {
-    return await Promise.resolve(mockFakeSurveys())
+type SutTypes = {
+  sut: LoadSurveysController
+  loadSurveysStub: LoadSurveys
+}
+
+const makeSut = (): SutTypes => {
+  const loadSurveysStub = new LoadSurveysStub()
+  const sut = new LoadSurveysController(loadSurveysStub)
+  return {
+    sut,
+    loadSurveysStub
   }
 }
 
@@ -20,9 +27,8 @@ describe('LoadSurveysController', () => {
   })
 
   test('Should call LoadSurveysController', async () => {
-    const loadSurveysStub = new LoadSurveysStub()
+    const { sut, loadSurveysStub } = makeSut()
     const loadSpy = jest.spyOn(loadSurveysStub, 'load')
-    const sut = new LoadSurveysController(loadSurveysStub)
     await sut.handle({})
     expect(loadSpy).toHaveBeenCalled()
   })
