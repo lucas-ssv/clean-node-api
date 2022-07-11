@@ -5,10 +5,29 @@ import { Collection } from 'mongodb'
 import { app } from '../config/app'
 import jwt from 'jsonwebtoken'
 
-describe('Survey Routes', () => {
-  let surveyCollection: Collection
-  let accountCollection: Collection
+let surveyCollection: Collection
+let accountCollection: Collection
 
+const makeAccessToken = async (role?: string): Promise<string> => {
+  const result = await accountCollection.insertOne({
+    name: 'any_name',
+    email: 'any_email@mail.com',
+    password: 'any_password',
+    role
+  })
+  const account = await accountCollection.findOne({ _id: result.insertedId })
+  const accessToken = jwt.sign({ id: account?._id.toHexString() }, env.jwtSecret)
+  await accountCollection.updateOne({
+    _id: account?._id
+  }, {
+    $set: {
+      accessToken
+    }
+  })
+  return accessToken
+}
+
+describe('Survey Routes', () => {
   beforeAll(async () => {
     await MongoHelper.connect(env.mongoUrl)
   })
@@ -40,21 +59,7 @@ describe('Survey Routes', () => {
     })
 
     test('Should return 204 on add survey with valid accessToken', async () => {
-      const result = await accountCollection.insertOne({
-        name: 'any_name',
-        email: 'any_email@mail.com',
-        password: 'any_password',
-        role: 'admin'
-      })
-      const account = await accountCollection.findOne({ _id: result.insertedId })
-      const accessToken = jwt.sign({ id: account?._id.toHexString() }, env.jwtSecret)
-      await accountCollection.updateOne({
-        _id: account?._id
-      }, {
-        $set: {
-          accessToken
-        }
-      })
+      const accessToken = await makeAccessToken('admin')
       await request(app)
         .post('/api/surveys')
         .set('x-access-token', accessToken)
@@ -78,34 +83,13 @@ describe('Survey Routes', () => {
         .expect(403)
     })
 
-    test('Should return 200 on load surveys with valid accessToken', async () => {
-      const result = await accountCollection.insertOne({
-        name: 'any_name',
-        email: 'any_email@mail.com',
-        password: 'any_password'
-      })
-      const account = await accountCollection.findOne({ _id: result.insertedId })
-      const accessToken = jwt.sign({ id: account?._id.toHexString() }, env.jwtSecret)
-      await accountCollection.updateOne({
-        _id: account?._id
-      }, {
-        $set: {
-          accessToken
-        }
-      })
-      await surveyCollection.insertMany([{
-        question: 'any_question',
-        answers: [{
-          image: 'any_image',
-          answer: 'any_answer'
-        }],
-        date: new Date()
-      }])
+    test('Should return 204 on load surveys with valid accessToken', async () => {
+      const accessToken = await makeAccessToken()
       await request(app)
         .get('/api/surveys')
         .set('x-access-token', accessToken)
         .send()
-        .expect(200)
+        .expect(204)
     })
   })
 })
