@@ -20,10 +20,7 @@ export class LoginController implements Controller {
       if (!authAccount) {
         return unauthorized()
       }
-      return ok({
-        name: 'any_name',
-        token: 'any_token'
-      })
+      return ok(authAccount)
     } catch (error) {
       return serverError(error)
     }
