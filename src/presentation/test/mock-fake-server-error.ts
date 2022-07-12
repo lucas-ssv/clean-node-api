@@ -1,5 +1,5 @@
-import { serverError } from '../helpers/http/http-helper'
-import { HttpResponse } from '../protocols'
+import { serverError } from '@/presentation/helpers/http/http-helper'
+import { HttpResponse } from '@/presentation/protocols'
 
 export const mockFakeServerError = (): HttpResponse => {
   const fakeError = new Error()

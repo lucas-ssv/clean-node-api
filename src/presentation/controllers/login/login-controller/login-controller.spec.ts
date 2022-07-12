@@ -1,9 +1,9 @@
-import { MissingParamError } from '../../../errors'
-import { badRequest, ok, serverError, unauthorized } from '../../../helpers/http/http-helper'
-import { AuthenticationStub } from '../../../test/mock-authentication'
-import { mockLoginRequest } from '../../../test/mock-login-request'
-import { mockSignUpRequest } from '../../../test/mock-signup-request'
-import { ValidationStub } from '../../../test/mock-validation'
+import { MissingParamError } from '@/presentation/errors'
+import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers/http/http-helper'
+import { AuthenticationStub } from '@/presentation/test/mock-authentication'
+import { mockLoginRequest } from '@/presentation/test/mock-login-request'
+import { mockSignUpRequest } from '@/presentation/test/mock-signup-request'
+import { ValidationStub } from '@/presentation/test/mock-validation'
 import { LoginController } from './login-controller'
 
 type SutTypes = {

@@ -1,8 +1,8 @@
-import { AccessDeniedError } from '../../errors'
-import { forbidden, ok, serverError } from '../../helpers/http/http-helper'
 import { AuthMiddleware } from './auth-middleware'
-import { LoadAccountByTokenStub } from '../../test/mock-load-account-by-token'
-import { mockFakeHeadersRequest } from '../../test/mock-fake-headers-request'
+import { AccessDeniedError } from '@/presentation/errors'
+import { forbidden, ok, serverError } from '@/presentation/helpers/http/http-helper'
+import { LoadAccountByTokenStub } from '@/presentation/test/mock-load-account-by-token'
+import { mockFakeHeadersRequest } from '@/presentation/test/mock-fake-headers-request'
 
 type SutTypes = {
   sut: AuthMiddleware

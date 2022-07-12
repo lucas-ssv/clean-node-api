@@ -1,7 +1,7 @@
+import { MongoHelper } from '@/infra/db/mongodb/helpers/mongo-helper'
+import { AccountMongoRepository } from '@/infra/db/mongodb/account/account-mongo-repository'
+import env from '@/main/config/env'
 import { Collection } from 'mongodb'
-import { MongoHelper } from '../helpers/mongo-helper'
-import { AccountMongoRepository } from './account-mongo-repository'
-import env from '../../../../main/config/env'
 
 let accountCollection: Collection
 

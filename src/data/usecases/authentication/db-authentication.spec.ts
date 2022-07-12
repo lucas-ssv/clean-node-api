@@ -1,9 +1,9 @@
-import { mockFakeAuthenticationModel } from '../../test/mock-fake-authentication-model'
-import { HashCompareStub } from '../../test/mock-hash-compare'
-import { LoadAccountByEmailRepositoryStub } from '../../test/mock-load-account-by-email-repository'
-import { EncrypterStub } from '../../test/mock-token-generator'
-import { UpdateAccessTokenRepositoryStub } from '../../test/mock-update-access-token-repository'
-import { DbAuthentication } from './db-authentication'
+import { mockFakeAuthenticationModel } from '@/data/test/mock-fake-authentication-model'
+import { HashCompareStub } from '@/data/test/mock-hash-compare'
+import { LoadAccountByEmailRepositoryStub } from '@/data/test/mock-load-account-by-email-repository'
+import { EncrypterStub } from '@/data/test/mock-token-generator'
+import { UpdateAccessTokenRepositoryStub } from '@/data/test/mock-update-access-token-repository'
+import { DbAuthentication } from '@/data/usecases/authentication/db-authentication'
 
 type SutTypes = {
   sut: DbAuthentication

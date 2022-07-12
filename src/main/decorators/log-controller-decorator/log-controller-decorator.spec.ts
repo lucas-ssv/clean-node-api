@@ -1,8 +1,8 @@
-import { LogErrorRepository } from '../../../data/protocols/db/log/log-error-repository'
-import { Controller, HttpRequest, HttpResponse } from '../../../presentation/protocols'
-import { mockFakeServerError } from '../../../presentation/test/mock-fake-server-error'
-import { mockSignUpRequest } from '../../../presentation/test/mock-signup-request'
-import { LogControllerDecorator } from './log-controller-decorator'
+import { LogErrorRepository } from '@/data/protocols/db/log/log-error-repository'
+import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
+import { mockFakeServerError } from '@/presentation/test/mock-fake-server-error'
+import { mockSignUpRequest } from '@/presentation/test/mock-signup-request'
+import { LogControllerDecorator } from '@/main/decorators/log-controller-decorator/log-controller-decorator'
 
 class ControllerStub implements Controller {
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {

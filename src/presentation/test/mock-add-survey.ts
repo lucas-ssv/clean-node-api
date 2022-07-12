@@ -1,5 +1,5 @@
-import { AddSurvey, AddSurveyModel } from '../../domain/usecases/add-survey'
-import { HttpRequest } from '../../presentation/protocols'
+import { AddSurvey, AddSurveyModel } from '@/domain/usecases/add-survey'
+import { HttpRequest } from '@/presentation/protocols'
 
 export const mockAddSurveyRequest = (): HttpRequest => ({
   body: {

@@ -1,8 +1,8 @@
-import { DbLoadAccountByToken } from './db-load-account-by-token'
-import { DecrypterStub } from '../../test/mock-decrypter'
-import { AccountModel } from '../../../domain/models/account'
-import { mockFakeAddAccountResult } from '../../test/mock-fake-add-account-result'
-import { LoadAccountByTokenRepository } from '../../protocols/db/account/load-account-by-token-repository'
+import { DbLoadAccountByToken } from '@/data/usecases/load-account-by-token/db-load-account-by-token'
+import { DecrypterStub } from '@/data/test/mock-decrypter'
+import { AccountModel } from '@/data/../domain/models/account'
+import { mockFakeAddAccountResult } from '@/data/test/mock-fake-add-account-result'
+import { LoadAccountByTokenRepository } from '@/data/protocols/db/account/load-account-by-token-repository'
 
 type SutTypes = {
   sut: DbLoadAccountByToken

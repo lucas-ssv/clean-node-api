@@ -1,13 +1,13 @@
-import { AddAccount } from '../../../domain/usecases/add-account'
-import { AddAccountRepository } from '../../protocols/db/account/add-account-repository'
-import { Hasher } from '../../protocols/criptography/hasher'
-import { AddAccountRepositoryStub } from '../../test/mock-add-account-repository'
-import { mockFakeAddAccountResult } from '../../test/mock-fake-add-account-result'
-import { HasherStub } from '../../test/mock-hasher'
-import { mockFakeAccountData } from '../../test/mock-fake-account-data'
-import { DbAddAccount } from './db-add-account'
-import { LoadAccountByEmailRepository } from '../../protocols/db/account/load-account-by-email-repository'
-import { AccountModel } from '../../../domain/models/account'
+import { AddAccount } from '@/domain/usecases/add-account'
+import { AddAccountRepository } from '@/data/protocols/db/account/add-account-repository'
+import { Hasher } from '@/data/protocols/criptography/hasher'
+import { AddAccountRepositoryStub } from '@/data/test/mock-add-account-repository'
+import { mockFakeAddAccountResult } from '@/data/test/mock-fake-add-account-result'
+import { HasherStub } from '@/data/test/mock-hasher'
+import { mockFakeAccountData } from '@/data/test/mock-fake-account-data'
+import { DbAddAccount } from '@/data/usecases/add-account/db-add-account'
+import { LoadAccountByEmailRepository } from '@/data/protocols/db/account/load-account-by-email-repository'
+import { AccountModel } from '@/domain/models/account'
 
 type SutTypes = {
   sut: AddAccount

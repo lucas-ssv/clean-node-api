@@ -1,8 +1,8 @@
-import { InvalidParamError, MissingParamError } from '../../../presentation/errors'
-import { Validation } from '../../../presentation/protocols/validation'
-import { CompareFieldsValidation } from '../compare-fields-validation/compare-fields-validation'
-import { RequiredFieldValidation } from '../required-field-validation/required-field-validation'
 import { ValidationComposite } from './validation-composite'
+import { InvalidParamError, MissingParamError } from '@/presentation/errors'
+import { Validation } from '@/presentation/protocols/validation'
+import { CompareFieldsValidation } from '@/validation/validators/compare-fields-validation/compare-fields-validation'
+import { RequiredFieldValidation } from '@/validation/validators/required-field-validation/required-field-validation'
 
 const makeSut = (validations: Validation[] = []): ValidationComposite => new ValidationComposite(validations)
 

@@ -1,7 +1,7 @@
-import { DbLoadSurveys } from './db-load-surveys'
-import { LoadSurveysRepositoryStub } from '../../test/mock-load-surveys-repository'
-import { LoadSurveysRepository } from '../../protocols/db/survey/load-surveys-repository'
-import { mockFakeSurveys } from '../../../domain/test/mock-fake-surveys'
+import { DbLoadSurveys } from '@/data/usecases/load-surveys/db-load-surveys'
+import { LoadSurveysRepositoryStub } from '@/data/test/mock-load-surveys-repository'
+import { LoadSurveysRepository } from '@/data/protocols/db/survey/load-surveys-repository'
+import { mockFakeSurveys } from '@/data/../domain/test/mock-fake-surveys'
 
 type SutTypes = {
   sut: DbLoadSurveys

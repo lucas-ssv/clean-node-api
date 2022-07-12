@@ -1,4 +1,4 @@
-import { HttpRequest } from '../protocols'
+import { HttpRequest } from '@/presentation/protocols'
 
 export const mockFakeHeadersRequest = (): HttpRequest => ({
   headers: {

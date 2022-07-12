@@ -1,5 +1,5 @@
-import { DbAddSurvey } from './db-add-survey'
-import { AddSurveyRepositoryStub, mockAddSurvey } from '../../test/mock-add-survey-repository'
+import { DbAddSurvey } from '@/data/usecases/add-survey/db-add-survey'
+import { AddSurveyRepositoryStub, mockAddSurvey } from '@/data/test/mock-add-survey-repository'
 
 type SutTypes = {
   sut: DbAddSurvey

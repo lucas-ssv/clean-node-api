@@ -1,6 +1,6 @@
-import { MongoHelper } from '../helpers/mongo-helper'
-import env from '../../../../main/config/env'
-import { SurveyMongoRepository } from './survey-mongo-repository'
+import { MongoHelper } from '@/infra/db/mongodb/helpers/mongo-helper'
+import { SurveyMongoRepository } from '@/infra/db/mongodb/survey/survey-mongo-repository'
+import env from '@/main/config/env'
 import { Collection } from 'mongodb'
 
 const makeSut = (): SurveyMongoRepository => new SurveyMongoRepository()
