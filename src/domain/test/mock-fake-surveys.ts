@@ -8,7 +8,7 @@ export const mockFakeSurveys = (): SurveyModel[] => {
       image: 'any_image',
       answer: 'any_answer'
     }],
-    date: new Date()
+    date: new Date('2022-1-1')
   }, {
     id: 'other_id',
     question: 'other_question',
@@ -16,6 +16,6 @@ export const mockFakeSurveys = (): SurveyModel[] => {
       image: 'other_image',
       answer: 'other_answer'
     }],
-    date: new Date()
+    date: new Date('2022-1-1')
   }]
 }
