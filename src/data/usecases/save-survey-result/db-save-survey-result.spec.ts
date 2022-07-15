@@ -1,6 +1,6 @@
 import { DbSaveSurveyResult } from './db-save-survey-result'
 import { SaveSurveyResultRepositoryStub } from '@/data/test/mock-save-survey-result-repository'
-import { mockFakeSaveSurveyResultModel } from '@/data/test/mock-fake-survey-result'
+import { mockFakeSaveSurveyResultModel, mockFakeSurveyResultModel } from '@/data/test/mock-fake-survey-result'
 import MockDate from 'mockdate'
 
 type SutTypes = {
@@ -41,5 +41,11 @@ describe('DbSaveSurveyResult Usecase', () => {
     })
     const promise = sut.save(mockFakeSaveSurveyResultModel())
     await expect(promise).rejects.toThrow()
+  })
+
+  test('Should return SurveyResult on success', async () => {
+    const { sut } = makeSut()
+    const surveyResult = await sut.save(mockFakeSaveSurveyResultModel())
+    expect(surveyResult).toEqual(mockFakeSurveyResultModel())
   })
 })
