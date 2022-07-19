@@ -1,4 +1,4 @@
-import { DbAddSurvey } from '@/data/usecases/add-survey/db-add-survey'
+import { DbAddSurvey } from '@/data/usecases/survey/add-survey/db-add-survey'
 import { AddSurveyRepositoryStub, mockAddSurvey } from '@/data/test/mock-add-survey-repository'
 
 type SutTypes = {

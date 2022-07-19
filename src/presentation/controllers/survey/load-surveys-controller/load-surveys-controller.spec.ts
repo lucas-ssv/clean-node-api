@@ -1,6 +1,6 @@
 import { LoadSurveysController } from './load-surveys-controller'
 import { LoadSurveysStub } from '@/presentation/test/mock-load-surveys'
-import { LoadSurveys } from '@/domain/usecases/load-surveys'
+import { LoadSurveys } from '@/domain/usecases/survey/load-surveys'
 import { mockFakeSurveys } from '@/domain/test/mock-fake-surveys'
 import { noContent, ok, serverError } from '@/presentation/helpers/http/http-helper'
 import MockDate from 'mockdate'

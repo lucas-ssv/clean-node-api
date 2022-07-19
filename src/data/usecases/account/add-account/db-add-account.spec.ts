@@ -1,11 +1,11 @@
-import { AddAccount } from '@/domain/usecases/add-account'
+import { AddAccount } from '@/domain/usecases/account/add-account'
 import { AddAccountRepository } from '@/data/protocols/db/account/add-account-repository'
 import { Hasher } from '@/data/protocols/criptography/hasher'
 import { AddAccountRepositoryStub } from '@/data/test/mock-add-account-repository'
 import { mockFakeAddAccountResult } from '@/data/test/mock-fake-add-account-result'
 import { HasherStub } from '@/data/test/mock-hasher'
 import { mockFakeAccountData } from '@/data/test/mock-fake-account-data'
-import { DbAddAccount } from '@/data/usecases/add-account/db-add-account'
+import { DbAddAccount } from '@/data/usecases/account/add-account/db-add-account'
 import { LoadAccountByEmailRepository } from '@/data/protocols/db/account/load-account-by-email-repository'
 import { AccountModel } from '@/domain/models/account'
 
