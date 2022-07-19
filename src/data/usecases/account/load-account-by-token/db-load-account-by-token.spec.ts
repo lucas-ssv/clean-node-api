@@ -1,4 +1,4 @@
-import { DbLoadAccountByToken } from '@/data/usecases/load-account-by-token/db-load-account-by-token'
+import { DbLoadAccountByToken } from '@/data/usecases/account/load-account-by-token/db-load-account-by-token'
 import { DecrypterStub } from '@/data/test/mock-decrypter'
 import { AccountModel } from '@/data/../domain/models/account'
 import { mockFakeAddAccountResult } from '@/data/test/mock-fake-add-account-result'

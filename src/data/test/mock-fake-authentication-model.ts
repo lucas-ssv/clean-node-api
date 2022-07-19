@@ -1,4 +1,4 @@
-import { AuthenticationModel } from '@/domain/usecases/authentication'
+import { AuthenticationModel } from '@/domain/usecases/account/authentication'
 
 export const mockFakeAuthenticationModel = (): AuthenticationModel => ({
   email: 'any_email@mail.com',

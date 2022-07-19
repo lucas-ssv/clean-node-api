@@ -1,5 +1,5 @@
 import { AuthAccount } from '@/domain/models/auth-account'
-import { Authentication, AuthenticationModel } from '@/domain/usecases/authentication'
+import { Authentication, AuthenticationModel } from '@/domain/usecases/account/authentication'
 import { HashCompare } from '@/data/protocols/criptography/hash-compare'
 import { Encrypter } from '@/data/protocols/criptography/encrypter'
 import { LoadAccountByEmailRepository } from '@/data/protocols/db/account/load-account-by-email-repository'
