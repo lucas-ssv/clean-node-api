@@ -1,4 +1,4 @@
-import { DbLoadSurveys } from '@/data/usecases/load-surveys/db-load-surveys'
+import { DbLoadSurveys } from '@/data/usecases/survey/load-surveys/db-load-surveys'
 import { LoadSurveysRepositoryStub } from '@/data/test/mock-load-surveys-repository'
 import { LoadSurveysRepository } from '@/data/protocols/db/survey/load-surveys-repository'
 import { mockFakeSurveys } from '@/data/../domain/test/mock-fake-surveys'

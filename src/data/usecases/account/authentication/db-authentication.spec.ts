@@ -3,7 +3,7 @@ import { HashCompareStub } from '@/data/test/mock-hash-compare'
 import { LoadAccountByEmailRepositoryStub } from '@/data/test/mock-load-account-by-email-repository'
 import { EncrypterStub } from '@/data/test/mock-token-generator'
 import { UpdateAccessTokenRepositoryStub } from '@/data/test/mock-update-access-token-repository'
-import { DbAuthentication } from '@/data/usecases/authentication/db-authentication'
+import { DbAuthentication } from '@/data/usecases/account/authentication/db-authentication'
 
 type SutTypes = {
   sut: DbAuthentication

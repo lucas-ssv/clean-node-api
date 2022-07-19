@@ -1,4 +1,4 @@
-import { AddAccount } from '@/domain/usecases/add-account'
+import { AddAccount } from '@/domain/usecases/account/add-account'
 import { EmailInUseError, MissingParamError, ServerError } from '@/presentation/errors'
 import { EmailValidatorStub } from '@/presentation/test/mock-email-validator'
 import { SignUpController } from './signup-controller'

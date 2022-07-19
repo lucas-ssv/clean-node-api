@@ -1,8 +1,8 @@
-import { AddAccount } from '@/domain/usecases/add-account'
+import { AddAccount } from '@/domain/usecases/account/add-account'
 import { badRequest, forbidden, ok, serverError } from '@/presentation/helpers/http/http-helper'
 import { Validation } from '@/presentation/protocols/validation'
 import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
-import { Authentication } from '@/domain/usecases/authentication'
+import { Authentication } from '@/domain/usecases/account/authentication'
 import { EmailInUseError } from '@/presentation/errors'
 
 export class SignUpController implements Controller {
