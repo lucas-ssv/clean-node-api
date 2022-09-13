@@ -2,7 +2,7 @@ import { SaveSurveyResultController } from './save-survey-result-controller'
 import { mockFakeRequest } from '@/presentation/test/mock-fake-request'
 import { LoadSurveyByIdStub } from '@/presentation/test/mock-load-survey-by-id'
 import { LoadSurveyById } from '@/domain/usecases/survey/load-survey-by-id'
-import { forbidden, serverError } from '@/presentation/helpers/http/http-helper'
+import { forbidden, ok, serverError } from '@/presentation/helpers/http/http-helper'
 import { InvalidParamError } from '@/presentation/errors'
 import { SaveSurveyResult } from '@/domain/usecases/survey-result/save-survey-result'
 import { SaveSurveyResultStub } from '@/presentation/test/mock-save-survey-result'
@@ -89,5 +89,17 @@ describe('SaveSurveyResultController', () => {
     })
     const httpResponse = await sut.handle(mockFakeRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
+  })
+
+  test('Should return 200 on success', async () => {
+    const { sut } = makeSut()
+    const httpResponse = await sut.handle(mockFakeRequest())
+    expect(httpResponse).toEqual(ok({
+      id: 'any_id',
+      surveyId: 'any_survey_id',
+      accountId: 'any_account_id',
+      date: new Date(),
+      answer: 'any_answer'
+    }))
   })
 })
