@@ -1,14 +1,15 @@
 import { AddAccount } from '@/domain/usecases/account/add-account'
 import { EmailInUseError, MissingParamError, ServerError } from '@/presentation/errors'
-import { EmailValidatorStub } from '@/presentation/test/mock-email-validator'
+import { EmailValidatorStub } from '@/validation/test/mock-email-validator'
 import { SignUpController } from './signup-controller'
 import { mockSignUpRequest } from '@/presentation/test/mock-signup-request'
 import { ok, serverError, badRequest, forbidden } from '@/presentation/helpers/http/http-helper'
-import { AddAccountStub } from '@/presentation/test/mock-add-account'
+import { AddAccountStub } from '@/presentation/test/mock-account'
 import { ValidationStub } from '@/presentation/test/mock-validation'
 import { AuthenticationStub } from '@/presentation/test/mock-authentication'
 import { mockLoginRequest } from '@/presentation/test/mock-login-request'
 import { EmailValidator } from '@/validation/protocols/email-validator'
+import { throwError } from '@/domain/test'
 
 type SutTypes = {
   sut: SignUpController
@@ -96,9 +97,7 @@ describe('SignUpController', () => {
 
   test('Should return 500 if Authentication throws', async () => {
     const { sut, authenticationStub } = makeSut()
-    jest.spyOn(authenticationStub, 'auth').mockImplementationOnce(() => {
-      throw new Error()
-    })
+    jest.spyOn(authenticationStub, 'auth').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(mockLoginRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
   })

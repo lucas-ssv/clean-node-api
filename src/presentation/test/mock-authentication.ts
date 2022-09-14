@@ -1,7 +1,7 @@
 import { AuthAccount } from '@/domain/models/auth-account'
-import { AuthenticationParams } from '@/domain/usecases/account/authentication'
+import { Authentication, AuthenticationParams } from '@/domain/usecases/account/authentication'
 
-export class AuthenticationStub {
+export class AuthenticationStub implements Authentication {
   async auth (params: AuthenticationParams): Promise<AuthAccount> {
     return {
       name: 'any_name',

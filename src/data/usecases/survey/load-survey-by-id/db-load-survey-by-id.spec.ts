@@ -1,7 +1,7 @@
 import { DbLoadSurveyById } from './db-load-survey-by-id'
-import { LoadSurveyByIdRepositoryStub } from '@/data/test/mock-load-survey-by-id-repository'
+import { LoadSurveyByIdRepositoryStub } from '@/data/test/mock-db-survey'
+import { mockSurveys, throwError } from '@/domain/test'
 import MockDate from 'mockdate'
-import { mockFakeSurveys } from '@/domain/test/mock-fake-surveys'
 
 type SutTypes = {
   sut: DbLoadSurveyById
@@ -36,14 +36,12 @@ describe('DbLoadSurveyById Usecase', () => {
   test('Should return Survey on success', async () => {
     const { sut } = makeSut()
     const survey = await sut.loadById('any_id')
-    expect(survey).toEqual(mockFakeSurveys()[0])
+    expect(survey).toEqual(mockSurveys()[0])
   })
 
   test('Should throw if LoadSurveyByIdRepository throws', async () => {
     const { sut, loadSurveyByIdRepositoryStub } = makeSut()
-    jest.spyOn(loadSurveyByIdRepositoryStub, 'loadById').mockImplementationOnce(() => {
-      throw new Error()
-    })
+    jest.spyOn(loadSurveyByIdRepositoryStub, 'loadById').mockImplementationOnce(throwError)
     const promise = sut.loadById('any_id')
     await expect(promise).rejects.toThrow()
   })
