@@ -1,7 +1,7 @@
-import { AddSurveyModel } from '@/domain/usecases/survey/add-survey'
+import { AddSurveyParams } from '@/domain/usecases/survey/add-survey'
 import { AddSurveyRepository } from '@/data/protocols/db/survey/add-survey-repository'
 
-export const mockAddSurvey = (): AddSurveyModel => ({
+export const mockAddSurvey = (): AddSurveyParams => ({
   question: 'any_question',
   answers: [{
     image: 'any_image',
@@ -11,7 +11,7 @@ export const mockAddSurvey = (): AddSurveyModel => ({
 })
 
 export class AddSurveyRepositoryStub implements AddSurveyRepository {
-  async add (surveyData: AddSurveyModel): Promise<void> {
+  async add (surveyData: AddSurveyParams): Promise<void> {
     return await Promise.resolve()
   }
 }

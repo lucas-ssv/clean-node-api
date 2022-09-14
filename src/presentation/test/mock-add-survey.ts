@@ -1,4 +1,4 @@
-import { AddSurvey, AddSurveyModel } from '@/domain/usecases/survey/add-survey'
+import { AddSurvey, AddSurveyParams } from '@/domain/usecases/survey/add-survey'
 import { HttpRequest } from '@/presentation/protocols'
 
 export const mockAddSurveyRequest = (): HttpRequest => ({
@@ -13,7 +13,7 @@ export const mockAddSurveyRequest = (): HttpRequest => ({
 })
 
 export class AddSurveyStub implements AddSurvey {
-  async add (data: AddSurveyModel): Promise<void> {
+  async add (data: AddSurveyParams): Promise<void> {
     return await Promise.resolve()
   }
 }
